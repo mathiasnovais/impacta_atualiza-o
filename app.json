@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "slug": "projeto3", 
+    "extra": {
+      "eas": {
+        "projectId": "bbd56f8c-5f62-4082-836d-aaf1b0b33db9"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/bbd56f8c-5f62-4082-836d-aaf1b0b33db9"
+    },
+    "android": {
+      "package": "com.jacquinnacausa.projeto3"
+    },
+    "ios": {
+      "bundleIdentifier": "com.jacquinnacausa.projeto3"
+    },
+    "owner": "jacquinnacausa"
+  }
+}
