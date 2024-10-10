@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 20, // Ajuste conforme necessário
         paddingBottom: 40, // Ajuste o espaço abaixo do cabeçalho
+        marginTop: 110, // Adicione esta linha para empurrar o cabeçalho mais para baixo
     },
+    
 
     titulo: {
         width: 280,
