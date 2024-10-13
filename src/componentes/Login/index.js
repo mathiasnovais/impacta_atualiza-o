@@ -1,19 +1,9 @@
-//-------------------------------------------------- Imports ----------------------------------------------//
-
-import React, {useState, useRef } from "react"
-import {View, Text, 
-        TextInput, TouchableOpacity, 
-        Image, Vibration, 
-        Pressable, Keyboard, 
-        KeyboardAvoidingView, Platform} 
-        from "react-native"
-
-import styles from './style'
-
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, Image, Pressable, Keyboard, KeyboardAvoidingView, Platform } from "react-native";
+import styles from 'src/componentes/Estilos/style.js'; // Certifique-se de que o caminho esteja correto
+import ThemeToggle from 'src/componentes/Estilos/ThemeToggle.js'; // Importe o componente
 
 const Main = ({ navigation }) => {
-//------------------------------------------- Criando as variaveis -------------------------------------------------------------//
-
     const [userDig, setUserDig] = useState(null);
     const [user, setUser] = useState(null);
     const [senhaDig, setSenhaDig] = useState(null);
@@ -21,146 +11,86 @@ const Main = ({ navigation }) => {
     const [textBotao, settextBotao] = useState("Criar Conta");
     const [textErroU, setMenssageErroU] = useState("");
     const [textErroS, setMenssageErroS] = useState("");
-    const inputRef = useRef(null);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
-    //-------------------------------------- Função para criar o login depois de passar pela verificação ----------------------//
-
-    function Criar(){
-        setUser(userDig)
-        setSenha(senhaDig)
-        setUserDig(null)
-        setSenhaDig(null)
-        settextBotao("Entrar")
-        return
-    }
-
-    //--------------------------------------- Função para tirar o foco da caixa (nome autoexplicativo) ------------------------//
-
-    const tirarFoco = () => {
-        if (inputRef.current) {
-        inputRef.current.blur(); // Remove o foco do TextInput
-        }
+    const toggleTheme = () => {
+        setIsDarkMode(!isDarkMode); // Alterna o tema
     };
 
-    //------------------------------- Fução que verifica os inputs e que manda para as outras funções --------------------------//
+    const Criar = () => {
+        setUser(userDig);
+        setSenha(senhaDig);
+        setUserDig(null);
+        setSenhaDig(null);
+        settextBotao("Entrar");
+    };
 
-    function Validar(){
+    const tirarFoco = () => {
+        Keyboard.dismiss();
+    };
 
-        tirarFoco()
-
-        //----------------------------------- If se algum dos campos forem vazios ou ambos --------------------------------------//
-
-        if (userDig == null || senhaDig == null){
-            if (userDig == null && senhaDig == null){
-                settextBotao("Preencha Todos os Campos")
-                setMenssageErroU("Campo Obrigatorio")
-                setMenssageErroS("Campo Obrigatorio")
-                setUserDig(null)
-                setSenhaDig(null)
-                
-                return
-            }
-            else if(userDig == null){
-                setMenssageErroU("Campo Obrigatorio")
-                settextBotao("Preencha Todos os Campos")
-                setMenssageErroS(null)
-                setUserDig(null)
-                setSenhaDig(null)
-                return
-            }
-            if(senhaDig == null){
-                settextBotao("Preencha Todos os Campos")
-                setMenssageErroS("Campo Obrigatorio")
-                setMenssageErroU(null)
-                setUserDig(null)
-                setSenhaDig(null)
-                return
-            }
+    const Validar = () => {
+        tirarFoco();
+        if (userDig == null || senhaDig == null) {
+            settextBotao("Preencha Todos os Campos");
+            if (userDig == null) setMenssageErroU("Campo Obrigatório");
+            if (senhaDig == null) setMenssageErroS("Campo Obrigatório");
+            return;
         }
-
-        //---------------------------------------- If para conferir se o usuario colocou o user e a senha cero ----------------------//
-
-        if (userDig != null && senhaDig != null){
-            setMenssageErroU(null)
-            setMenssageErroS(null)
-            if(user == null && senha == null){
-                settextBotao("Erro")
-                Criar()
-                return
-            }
-            else if(user == userDig && senha == senhaDig){
-                navigation.navigate('Home')
-                settextBotao("Logar")
-                setUserDig(null)
-                setSenhaDig(null)
-                return
-            }
-            else if(user != userDig || senha != senhaDig){
-                settextBotao("User ou Senha estão errados")
-                Vibration.vibrate()
-                setUserDig(null)
-                setSenhaDig(null)
-                return
-            }
-            return
+        setMenssageErroU(null);
+        setMenssageErroS(null);
+        if (user == null && senha == null) {
+            settextBotao("Erro");
+            Criar();
+            return;
         }
+        if (user === userDig && senha === senhaDig) {
+            navigation.navigate('Home');
+            settextBotao("Logar");
+        } else {
+            settextBotao("User ou Senha estão errados");
+        }
+        setUserDig(null);
+        setSenhaDig(null);
+    };
 
-        setUserDig(null)
-        setSenhaDig(null)
-    }
+    return (
+        <Pressable onPress={Keyboard.dismiss} style={[styles.conteiner, isDarkMode ? styles.darkBackground : styles.lightBackground]}>
+            {/* Usando o componente de alternância de tema */}
+            <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
 
-
-    return(
-        
-        //----------------------------------------- Tela ------------------------------------------------//
-
-        <Pressable onPress={Keyboard.dismiss} style={styles.conteiner}>
-            <KeyboardAvoidingView style={styles.conteiner2} 
-                behavior={Platform.OS === 'android' ? 'padding' : 'height'} 
-                keyboardVerticalOffset={346}>
-
-                {/*------------------------------- Cabeçalho --------------------------------------------*/}
-
+            {/* O restante do código permanece igual */}
+            <KeyboardAvoidingView style={styles.conteiner2} behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
                 <View style={styles.cabecalho}>
-                    <Image
-                    style={styles.titulo}
-                    source={require('../Title/imagem-apoio.png')}
-                    />
+                    <Image style={styles.titulo} source={require('../Title/imagem-apoio.png')} />
                 </View>
 
-                {/*------------------------------------ Formulario de Login ---------------------------- */}
-
                 <View style={styles.form}>
-
-                    <Text style={styles.label}>Usuário:</Text>
+                    <Text style={[styles.label, isDarkMode ? styles.darkText : styles.lightText]}>Usuário:</Text>
                     <TextInput 
-                    style={styles.inputGrande}
-                    ref={inputRef}
-                    onChangeText={setUserDig}
-                    value={userDig}
-                    placeholder=""
-                    keyboardType="ascii-capable"
+                        style={styles.inputGrande} 
+                        onChangeText={setUserDig} 
+                        value={userDig} 
+                        placeholder="" 
                     />
                     <Text style={styles.erroMenssage}>{textErroU}</Text>
 
-                    <Text style={styles.label}>Senha:</Text>
-                    <TextInput
-                    style={styles.inputGrande}
-                    ref={inputRef}
-                    onChangeText={setSenhaDig}
-                    value={senhaDig}
-                    placeholder=""
-                    secureTextEntry={true}
-                    />     
-                    <Text style={styles.erroMenssage}>{textErroS}</Text>             
+                    <Text style={[styles.label, isDarkMode ? styles.darkText : styles.lightText]}>Senha:</Text>
+                    <TextInput 
+                        style={styles.inputGrande} 
+                        onChangeText={setSenhaDig} 
+                        value={senhaDig} 
+                        secureTextEntry={true} 
+                    />
+                    <Text style={styles.erroMenssage}>{textErroS}</Text>
 
-                    <TouchableOpacity style={styles.botao} onPress={()=>Validar()}>
+                    <TouchableOpacity style={styles.botao} onPress={Validar}>
                         <Text style={styles.textoBotao}>{textBotao}</Text>
-                    </TouchableOpacity> 
-
+                    </TouchableOpacity>
                 </View>
-            </KeyboardAvoidingView>             
+            </KeyboardAvoidingView>
         </Pressable>
     );
-}
+};
+
 export default Main;

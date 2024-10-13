@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
         marginTop: 110, // Adicione esta linha para empurrar o cabeçalho mais para baixo
     },
     
-
     titulo: {
         width: 280,
         height: 90,

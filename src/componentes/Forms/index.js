@@ -86,112 +86,115 @@ const Main = () => {
 
     return (
         <Pressable style={styles.conteiner} onPress={Keyboard.dismiss}>
-            <KeyboardAvoidingView
-                style={styles.conteiner2}
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 20} // Ajuste esse valor conforme necessário
-            >
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                    {/* Cabeçalho */}
-                    <View style={styles.cabecalho}>
-                        <Image
-                            style={styles.titulo}
-                            source={require('../Title/imagem-apoio.png')}
-                        />
-                    </View>
+    {/* Envolvendo KeyboardAvoidingView e ScrollView */}
+    <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 20} // Ajuste conforme necessário
+    >
+        {/* Cabeçalho fixo */}
+        <View style={styles.cabecalho}>
+            <Image
+                style={styles.titulo}
+                source={require('../Title/imagem-apoio.png')}
+            />
+        </View>
 
-                    {/* Formulário */}
-                    <View style={styles.form}>
-                        <Text style={styles.label}>Contratante</Text>
-                        <TextInput 
-                            style={styles.inputGrande}
-                            ref={inputRef}
-                            onChangeText={setContratante}
-                            value={contratante}
-                            placeholder="Ex. Nome"
-                        />
-                        <Text style={styles.erroMenssage}>{textErroCo}</Text>
+        {/* Conteúdo rolável */}
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            {/* Formulário */}
+            <View style={styles.form}>
+                <Text style={styles.label}>Contratante</Text>
+                <TextInput 
+                    style={styles.inputGrande}
+                    ref={inputRef}
+                    onChangeText={setContratante}
+                    value={contratante}
+                    placeholder="Ex. Nome"
+                />
+                <Text style={styles.erroMenssage}>{textErroCo}</Text>
 
-                        <View style={styles.alinhar}>
-                            <Text style={styles.label}>Cachê</Text>
-                            <Text style={styles.label2}>Estado</Text>
-                        </View>
+                <View style={styles.alinhar}>
+                    <Text style={styles.label}>Cachê</Text>
+                    <Text style={styles.label2}>Estado</Text>
+                </View>
 
-                        <View style={styles.alinhar}>
-                            <TextInput
-                                ref={inputRef}
-                                onChangeText={setCache}
-                                value={cache}
-                                style={styles.inputPequeno}
-                                placeholder="Ex. 3.000"
-                                keyboardType="numeric"
-                            />
-                            <TextInput
-                                ref={inputRef}
-                                onChangeText={setEstado}
-                                value={estado}
-                                style={styles.inputPequeno2}
-                                placeholder="Ex. RJ, SP"
-                                keyboardType="ascii-capable"
-                            />
-                        </View>
+                <View style={styles.alinhar}>
+                    <TextInput
+                        ref={inputRef}
+                        onChangeText={setCache}
+                        value={cache}
+                        style={styles.inputPequeno}
+                        placeholder="Ex. 3.000"
+                        keyboardType="numeric"
+                    />
+                    <TextInput
+                        ref={inputRef}
+                        onChangeText={setEstado}
+                        value={estado}
+                        style={styles.inputPequeno2}
+                        placeholder="Ex. RJ, SP"
+                        keyboardType="ascii-capable"
+                    />
+                </View>
 
-                        <View style={styles.alinhar}>
-                            <Text style={styles.erroMenssage}>{textErroCa}</Text>
-                            <View style={styles.afastar}><Text style={styles.erroMenssage}>{textErroE}</Text></View>
-                        </View>
+                <View style={styles.alinhar}>
+                    <Text style={styles.erroMenssage}>{textErroCa}</Text>
+                    <View style={styles.afastar}><Text style={styles.erroMenssage}>{textErroE}</Text></View>
+                </View>
 
-                        <Text style={styles.label}>Cidade</Text>
-                        <TextInput
-                            style={styles.inputGrande}
-                            ref={inputRef}
-                            onChangeText={setCidade}
-                            value={cidade}
-                            placeholder="Ex. Rio de Janeiro"
-                            keyboardType="ascii-capable"
-                        />
-                        <Text style={styles.erroMenssage}>{textErroCi}</Text>
+                <Text style={styles.label}>Cidade</Text>
+                <TextInput
+                    style={styles.inputGrande}
+                    ref={inputRef}
+                    onChangeText={setCidade}
+                    value={cidade}
+                    placeholder="Ex. Rio de Janeiro"
+                    keyboardType="ascii-capable"
+                />
+                <Text style={styles.erroMenssage}>{textErroCi}</Text>
 
-                        <View style={styles.alinhar}>
-                            <Text style={styles.label}>Data</Text>
-                            <Text style={styles.label2}>Hora</Text>
-                        </View>
+                <View style={styles.alinhar}>
+                    <Text style={styles.label}>Data</Text>
+                    <Text style={styles.label2}>Hora</Text>
+                </View>
 
-                        <View style={styles.alinhar}>
-                            <TextInput
-                                style={styles.inputPequeno1}
-                                ref={inputRef}
-                                onChangeText={setData}
-                                value={data}
-                                placeholder="Ex. 20/03/24"
-                                keyboardType="numbers-and-punctuation"
-                            />
-                            <TextInput
-                                style={styles.inputPequeno2}
-                                ref={inputRef}
-                                onChangeText={setHora}
-                                value={hora}
-                                placeholder="Ex. 18:30"
-                                keyboardType="numbers-and-punctuation"
-                            />
-                        </View>
+                <View style={styles.alinhar}>
+                    <TextInput
+                        style={styles.inputPequeno1}
+                        ref={inputRef}
+                        onChangeText={setData}
+                        value={data}
+                        placeholder="Ex. 20/03/24"
+                        keyboardType="numbers-and-punctuation"
+                    />
+                    <TextInput
+                        style={styles.inputPequeno2}
+                        ref={inputRef}
+                        onChangeText={setHora}
+                        value={hora}
+                        placeholder="Ex. 18:30"
+                        keyboardType="numbers-and-punctuation"
+                    />
+                </View>
 
-                        <View style={styles.alinhar}>
-                            <Text style={styles.erroMenssage}>{textErroD}</Text>
-                            <View style={styles.afastar}><Text style={styles.erroMenssage}>{textErroH}</Text></View>
-                        </View>
+                <View style={styles.alinhar}>
+                    <Text style={styles.erroMenssage}>{textErroD}</Text>
+                    <View style={styles.afastar}><Text style={styles.erroMenssage}>{textErroH}</Text></View>
+                </View>
 
-                        <TouchableOpacity style={styles.botao} onPress={Validar}>
-                            <Text style={styles.textoBotao}>Adicionar Nova Data</Text>
-                        </TouchableOpacity>
+                <TouchableOpacity style={styles.botao} onPress={Validar}>
+                    <Text style={styles.textoBotao}>Adicionar Nova Data</Text>
+                </TouchableOpacity>
 
-                        <View style={styles.caixaSuc}>
-                            <Text style={styles.sucessoMenssage}>{textSucesso}</Text>
-                        </View>
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </Pressable>
+                <View style={styles.caixaSuc}>
+                    <Text style={styles.sucessoMenssage}>{textSucesso}</Text>
+                </View>
+            </View>
+        </ScrollView>
+    </KeyboardAvoidingView>
+</Pressable>
+
     );
 };
 

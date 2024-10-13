@@ -6,6 +6,7 @@ import Login from "./src/componentes/Login";
 import Artista from "./src/componentes/Artistas";
 import Opcoes from "./src/componentes/Opcoes";
 import Forms from "./src/componentes/Forms";
+import Agenda from "./src/componentes/Agenda";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function Index() {
         <Stack.Screen name="Home" component={Artista} />
         <Stack.Screen name="Opcoes" component={Opcoes} />
         <Stack.Screen name="Forms" component={Forms} />
+        <Stack.Screen name="Agenda" component={Agenda} />
       </Stack.Navigator>
     </NavigationContainer>
   );
