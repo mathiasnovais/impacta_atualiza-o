@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
         bottom:'0',
         backgroundColor:'rgba(18, 18, 18, 1)',
         alignItems:'center',
-        marginTop:0,
         paddingTop:150,
     },
     cabecalho:{

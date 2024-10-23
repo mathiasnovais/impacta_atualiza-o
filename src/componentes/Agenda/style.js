@@ -6,13 +6,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(18, 18, 18, 1)', // Fundo escuro para o calendário
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 40,
+        paddingtop: 150,
     },
 
     cabecalho:{
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom:40,
+        marginBottom:40,
     },
     titulo:{
         width: 280,
@@ -72,6 +72,23 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 15,
+    },
+    botaoContainer: {
+        marginTop: 20, // Espaçamento em relação ao conteúdo anterior
+        justifyContent: 'flex-end', // Empurrar o botão para o final
+        alignItems: 'center', // Centralizar horizontalmente
+    },
+    customButton: {
+        backgroundColor: 'rgba(0, 89, 158, 1)', // Cor do botão
+        padding: 10, // Espaçamento interno
+        borderRadius: 5, // Bordas arredondadas
+        alignItems: 'center',
+        width: 290, // Largura do botão
+    },
+    customButtonText: {
+        color: '#fff', // Cor do texto
+        fontWeight: 'bold', // Texto em negrito
+        fontSize: 16, // Tamanho da fonte
     },
 });
 

@@ -18,8 +18,8 @@ const Main = ({ navigation }) => {
                 <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Agenda')}>
                     <Text style={styles.textoBotao}>Agenda</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botao}>
-                    <Text style={styles.textoBotao}>Shows Próximos</Text>
+                <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Artista')}>
+                    <Text style={styles.textoBotao}>Artistas</Text>
                 </TouchableOpacity>
             </View>
         </View>

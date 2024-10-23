@@ -45,7 +45,7 @@ const Main = ({ navigation }) => {
             return;
         }
         if (user === userDig && senha === senhaDig) {
-            navigation.navigate('Home');
+            navigation.navigate('Opcoes');
             settextBotao("Logar");
         } else {
             settextBotao("User ou Senha estão errados");
@@ -62,7 +62,15 @@ const Main = ({ navigation }) => {
             {/* O restante do código permanece igual */}
             <KeyboardAvoidingView style={styles.conteiner2} behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
                 <View style={styles.cabecalho}>
-                    <Image style={styles.titulo} source={require('../Title/imagem-apoio.png')} />
+                    {/* Alterando a imagem com base no modo de tema */}
+                    <Image 
+                        style={styles.titulo} 
+                        source={isDarkMode 
+                            ? require('../Title/imagem-apoio.png')  // Imagem para o modo escuro
+                            : require('../Title/Modo claro.png')  // Imagem para o modo claro
+                        } 
+                        resizeMode="contain" // Garante que a imagem seja contida no espaço
+                    />
                 </View>
 
                 <View style={styles.form}>

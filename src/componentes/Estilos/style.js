@@ -31,9 +31,12 @@ const styles = StyleSheet.create({
         paddingBottom: 40, // Adiciona padding inferior de 40 pixels
     },
     titulo: {
-        width: 280, // Largura da imagem do título
-        height: 90, // Altura da imagem do título
+        width: 280, // Largura fixa da imagem
+        height: undefined, // Permite que a altura seja ajustada com base no aspecto
+        aspectRatio: 280 / 90, // Define a proporção da imagem (largura/altura)
+        resizeMode: 'contain', // Ajusta a imagem para se adaptar ao espaço sem cortar
     },
+    
     // Estilos para o formulário principal
     form: {
         width: '100%', // Largura do formulário como 100%
@@ -41,6 +44,7 @@ const styles = StyleSheet.create({
         padding: 10, // Adiciona padding de 10 pixels
         paddingLeft: 20, // Padding esquerdo de 20 pixels
         paddingRight: 20, // Padding direito de 20 pixels
+        justifyContent: 'center', // Centraliza o conteúdo verticalmente
     },
     // Estilos para textos no formulário
     label: {
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
         top: 40, // Distância do topo
         right: 20, // Distância da direita
         width: 60, // Largura do container de alternância
-        height: 25, // Altura do container de alternância
+        height: 55, // Altura do container de alternância
         borderRadius: 15, // Borda arredondada
         justifyContent: 'center', // Centraliza o conteúdo verticalmente
         padding: 5, // Padding interno
