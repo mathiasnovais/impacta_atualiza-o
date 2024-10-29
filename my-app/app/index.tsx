@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from "@/src/componentes/Login";
-import Artista from "@/src/componentes/Artistas";
-import Opcoes from "@/src/componentes/Opcoes";
-import Forms from "@/src/componentes/Forms";
+import Login from "../src/componentes/Login";
+import Artista from "../src/componentes/Artistas";
+import Opcoes from "../src/componentes/Opcoes";
+import Forms from "../src/componentes/Forms";
 
 const Stack = createNativeStackNavigator();
 

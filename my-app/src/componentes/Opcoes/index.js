@@ -1,0 +1,29 @@
+import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import styles from './style';
+
+const Main = ({ navigation }) => {
+    return (
+        <View style={styles.conteiner}>
+            <View style={styles.cabecalho}>
+                <Image
+                    style={styles.titulo}
+                    source={require('../Title/imagem-apoio.png')}
+                />
+            </View>
+            <View style={styles.conteinerOpcoes}>
+                <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Forms')}>
+                    <Text style={styles.textoBotao}>Adicionar Show</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Agenda')}>
+                    <Text style={styles.textoBotao}>Agenda</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Artista')}>
+                    <Text style={styles.textoBotao}>Artistas</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+}
+
+export default Main;
